@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Monthly + grouped (weekly is too noisy). One PR each for npm deps and Actions.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      npm-all:
+        patterns: ['*']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      actions-all:
+        patterns: ['*']

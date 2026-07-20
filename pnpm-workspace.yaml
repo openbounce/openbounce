@@ -1,0 +1,15 @@
+packages:
+  - packages/*
+
+# esbuild (pulled in by tsup + vitest) needs its postinstall to link the platform binary. pnpm blocks
+# dependency build scripts by default (supply chain); allow this vetted one explicitly.
+onlyBuiltDependencies:
+  - esbuild
+
+# Supply-chain cooldown: refuse to install a dependency version until it is at least this many
+# minutes old (1440 = 24h, pnpm's default), so a freshly-published malicious release isn't pulled
+# in before it's caught/yanked. CI's --frozen-lockfile installs are unaffected.
+minimumReleaseAge: 1440
+
+allowBuilds:
+  esbuild: true

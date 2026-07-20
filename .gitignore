@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
+
+# Generated benchmark output (regenerate with `pnpm bench`; the current snapshot lives in bench/README.md)
+bench/results/
+
+# Env / local state — commit .env.example, never real secrets
+.env
+.env.*
+!.env.example

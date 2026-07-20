@@ -1,0 +1,7 @@
+dist
+coverage
+node_modules
+pnpm-lock.yaml
+
+# Markdown is hand-formatted (aligned tables, TOCs, ASCII); Prettier would reflow it.
+**/*.md
