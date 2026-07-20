@@ -1,0 +1,63 @@
+{
+  "name": "openbounce",
+  "version": "0.1.0",
+  "description": "Open-source, local-first email verification — library + CLI. The honest, embeddable verifier: syntax, MX/DNS, SMTP mailbox probing, catch-all, disposable/role/free, and typo suggestions. No paid API.",
+  "keywords": [
+    "email",
+    "email-validation",
+    "email-verification",
+    "smtp",
+    "mx",
+    "disposable-email",
+    "catch-all",
+    "verifier",
+    "cli",
+    "zerobounce"
+  ],
+  "license": "MIT",
+  "author": "Sharvil Kadam",
+  "homepage": "https://github.com/openbounce/openbounce#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openbounce/openbounce.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/openbounce/openbounce/issues"
+  },
+  "type": "module",
+  "bin": {
+    "openbounce": "./dist/cli.js"
+  },
+  "main": "./dist/lib.js",
+  "module": "./dist/lib.js",
+  "types": "./dist/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/lib.d.ts",
+        "default": "./dist/lib.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@openbounce/core": "workspace:*"
+  },
+  "scripts": {
+    "prepack": "pnpm run build",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}

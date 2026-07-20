@@ -1,0 +1,9 @@
+{
+  // Build-only config for tsup's .d.ts emit (see packages/core/tsconfig.build.json for the full why:
+  // tsup injects a deprecated `baseUrl`; the escape hatch is scoped here, off the TS 7 typecheck path).
+  // `@openbounce/core` stays external and resolves via its published types — no path mapping needed.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "ignoreDeprecations": "6.0" },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "tests"]
+}
