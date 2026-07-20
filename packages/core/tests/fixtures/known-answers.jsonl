@@ -1,0 +1,10 @@
+{"category":"invalid-syntax","email":"not-an-email","expect":{"status":"invalid","subStatus":"invalid_syntax"},"note":"no @, no domain"}
+{"category":"invalid-syntax","email":"bad@@example.com","expect":{"status":"invalid","subStatus":"invalid_syntax"},"note":"double @"}
+{"category":"invalid-no-mx","email":"user@no-such-domain-zzz.example","dns":{"noMx":true},"expect":{"status":"invalid","subStatus":"no_mx"},"note":"domain resolves to nothing"}
+{"category":"disposable","email":"throwaway@mailinator.com","dns":{"mx":["mail.mailinator.com"]},"expect":{"status":"disposable","disposable":true},"note":"canonical disposable domain (CC0 list)"}
+{"category":"role","email":"info@acme-corp.example","dns":{"mx":["mx.acme-corp.example"]},"expect":{"status":"role","role":true},"note":"role local-part on a deliverable custom domain"}
+{"category":"free","email":"jane.doe@gmail.com","dns":{"mx":["gmail-smtp-in.l.google.com"]},"expect":{"status":"unknown","free":true,"provider":"google"},"note":"free provider; mailbox unverifiable offline → unknown, not a guessed valid"}
+{"category":"free-microsoft","email":"someone@outlook.com","dns":{"mx":["outlook-com.olc.protection.outlook.com"]},"expect":{"free":true,"provider":"microsoft"},"note":"provider fingerprint from MX"}
+{"category":"typo","email":"user@gmial.com","dns":{"mx":["mx.gmial.com"]},"expect":{"didYouMean":"user@gmail.com"},"note":"did-you-mean correction"}
+{"category":"custom-deliverable","email":"jane@acme-corp.example","dns":{"mx":["mx.acme-corp.example"]},"expect":{"status":"unknown","subStatus":"smtp_unavailable","provider":"custom"},"note":"has MX, mailbox unverifiable offline"}
+{"category":"implicit-mx","email":"user@mx-less.example","dns":{"mx":[],"a":["93.184.216.34"]},"expect":{"status":"unknown","subStatus":"smtp_unavailable"},"note":"no MX record; RFC 5321 fallback to the A record (implicit MX) → deliverable domain, mailbox unverifiable offline"}
