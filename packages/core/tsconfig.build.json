@@ -1,0 +1,12 @@
+{
+  // Build-only config for tsup's .d.ts emit (src only — tests never ship types). tsup/rollup-plugin-dts
+  // injects a `baseUrl` into its dts program unconditionally, which TS 6.0 flags as the hard error
+  // TS5101 (the option is removed in 7.0). We scope the escape hatch here rather than in tsconfig.json,
+  // because the dts build runs on the TS 6 toolchain while the TS 7 forward-compat typecheck reads
+  // tsconfig.json — and TS 7 would reject `ignoreDeprecations: "6.0"`. Remove once tsup no longer sets
+  // `baseUrl` (i.e. supports the TS 7 native emitter).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "ignoreDeprecations": "6.0" },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "tests"]
+}
